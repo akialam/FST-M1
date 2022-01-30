@@ -1,1 +1,40 @@
+package liveproject;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+public class Activity5 {
+    //#f5f5f5
+    WebDriver driver;
+    @BeforeClass
+    public void browser()
+    {
+        driver=new FirefoxDriver();
+        driver.get("http://alchemy.hguy.co/crm");
+        //driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.findElement(By.id("user_name")).sendKeys("admin");
+        driver.findElement(By.id("username_password")).sendKeys("pa$$w0rd");
+        driver.findElement(By.id("bigbutton")).click();
+    }
+    @Test
+    public void color()
+    {
+       String bgcolor= driver.findElement(By.xpath("//div[@class='desktop-toolbar']")).getCssValue("color");
+       System.out.println(bgcolor);
+
+    }
+    @AfterClass
+    public void cleanup()
+    {
+        driver.close();
+    }
+}

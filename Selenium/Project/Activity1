@@ -1,0 +1,31 @@
+package liveproject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+//Verify the website title
+public class Activity1 {
+    WebDriver driver;
+@BeforeMethod
+    public void browser()
+    {
+    driver=new FirefoxDriver();
+    driver.get("http://alchemy.hguy.co/crm");
+    }
+    @Test
+    public void verify_title()
+    {
+       boolean match= driver.getTitle().contains("SuiteCRM");
+
+       if(match)
+       {
+           driver.close();
+       }
+
+    }
+}
